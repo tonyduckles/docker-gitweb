@@ -8,11 +8,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build image
-      run: docker build . -t website-server
+      run: docker build . -t gitweb
     - name: Show image info
       run: docker images
     - name: Test config
-      run: docker run website-server nginx -t
+      run: docker run gitweb nginx -t
 
   shellcheck:
     runs-on: ubuntu-latest
