@@ -33,6 +33,14 @@ COPY ./nginx/nginx.conf /etc/nginx/default.conf.template
 
 COPY ./gitweb/gitweb.conf /etc/gitweb/gitweb.conf.template
 
+# Run envsubst's at build-time, so that the CI `nginx -t` test can verify
+# the baseline rendered nginx config file.
+RUN set -x \
+# Generate nginx config
+	&& envsubst '$PROJECTROOT' < /etc/nginx/default.conf.template > /etc/nginx/http.d/default.conf \
+# Generate gitweb config
+	&& envsubst '$PROJECTROOT$PROJECTS_LIST' < /etc/gitweb/gitweb.conf.template > /etc/gitweb/gitweb.conf
+
 EXPOSE 80
 
 HEALTHCHECK CMD nginx -t &>/dev/null \
