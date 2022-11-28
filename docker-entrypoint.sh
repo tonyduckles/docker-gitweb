@@ -2,9 +2,13 @@
 
 set -e
 
-# Update nginx user id
-deluser nginx
-adduser -u "$PUID" -D nginx
+# Update GECOS field for user=root, for prettier file-owner username
+awk -F ":" \
+    '
+    $1=="root" { gecos="'"$ROOT_GECOS"'"; print $1":"$2":"$3":"$4":"gecos":"$6":"$7 }
+    $1!="root" { print }
+    ' /etc/passwd > /etc/passwd.edit
+mv -f /etc/passwd.edit /etc/passwd
 
 # Generate nginx config
 envsubst '$PROJECTROOT' < /etc/nginx/default.conf.template > /etc/nginx/http.d/default.conf

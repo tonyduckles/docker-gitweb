@@ -43,21 +43,37 @@ environment variables or arguments on the docker run command line.
 
 #### `PUID`
 
-Set the user nginx runs as (default `1000`)
+Set the user nginx runs as.
+
+Default:`1000`
 
 #### `PROJECTROOT`
 
 The directories where your projects are. *Must not end with a slash.*
+
 Default: `PROJECTROOT=/var/lib/git/repositories`
 
 #### `PROJECTS_LIST`
 
 Define which file Gitweb reads to learn the git projects. If set to empty
 string; Gitweb simply scan the `PROJECTROOT` directory.
+
 Default: `PROJECTS_LIST=/var/lib/git/projects.list`
+
+#### `ROOT_GECOS`
+
+Define the user real-name (GECOS field) for the `root` user, for prettier
+user-name display in Gitweb.
+
+Gitweb shows the real-name of the owner of each
+Git repository. Since the container runs as `root` (`uid=0`), any bind-mounted
+volumes will be owned by `root`. This allows you to override the real-name for
+the singular `root` user.
+
+Default: `ROOT_GECOS=Git`
 
 ### Additional Nginx Configuration
 
 If you'd rather add some additional configuration yourself, you can mount an
-additional nginx config at `/etc/nginx/extra.conf`, which will be included in
+additional Nginx config at `/etc/nginx/extra.conf`, which will be included in
 the primary config.

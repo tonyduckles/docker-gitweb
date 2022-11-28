@@ -3,7 +3,8 @@ LABEL maintainer=tonyduckles
 
 ENV	PROJECTROOT=/var/lib/git/repositories \
 	PROJECTS_LIST=/var/lib/git/projects.list \
-	PUID=1000
+	PUID=1000 \
+	ROOT_GECOS=Git
 
 RUN apk --no-cache add \
 # Install gettext, for `envsubst`
