@@ -13,6 +13,7 @@ RUN apk --no-cache add \
 	nginx-mod-http-brotli \
 # Install gitweb packages
 	git-gitweb \
+	git-daemon \
 	perl-cgi \
 	fcgiwrap \
 	spawn-fcgi \
