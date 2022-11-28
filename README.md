@@ -77,3 +77,11 @@ Default: `ROOT_GECOS=Git`
 If you'd rather add some additional configuration yourself, you can mount an
 additional Nginx config at `/etc/nginx/extra.conf`, which will be included in
 the primary config.
+
+## Credit
+
+- Base docker container setup forked from
+  [RealOrangeOne/docker-website-server](https://github.com/RealOrangeOne/docker-website-server)
+
+- Additional inspiration from
+  [mlan/docker-gitweb](https://github.com/mlan/docker-gitweb)
